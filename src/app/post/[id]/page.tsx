@@ -1,6 +1,6 @@
 import { Post } from '../../types/post';
 import PostContent from "../../components/PostContent";
-import Summarizer from '../../components/Summarizer';
+import Summarizer from '../../components/summarizer';
 
 export default async function getPost({ params } : {params: Promise<{id: string}>}) {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';

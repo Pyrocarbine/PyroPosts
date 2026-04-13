@@ -117,7 +117,7 @@ export default function NewPostPage() {
     }
     return (
         <main>
-            <div className="text-center text-3xl pb-8 pt-2">Create a new post!</div>
+            <div className="text-center text-3xl pb-8 pt-2 mt-5">Create a new post!</div>
             <div className="w-1/2 block m-auto">
                 <form onSubmit={submitPost} className="space-y-4">
                     <input type="text" value={postTitle} placeholder="Title" onChange={(e) => setPostTitle(e.target.value)} className="w-full border p-2 mb-5"/>

@@ -23,7 +23,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-6 mt-10">
       {posts.map(
         (post) =>
           post.user_id == session?.user?.id && (

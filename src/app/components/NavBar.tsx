@@ -7,7 +7,7 @@ export default function NavBar() {
     const { data: session } = useSession();
     const path = usePathname();
     return (
-        <div className="w-full h-16 border-b bg-white text-gray-800 flex items-center justify-center px-4 mb-5 relative">
+        <div className="w-full h-16 border-b bg-white text-gray-800 flex items-center justify-center px-4 relative">
             <div className="absolute left-1/2 transform -translate-x-1/2">
                 <h1 className="text-2xl font-bold">
                     <Link href="/">PyroBlog</Link>

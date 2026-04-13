@@ -15,7 +15,7 @@ export default function DeleteButton({ postId }: { postId: number }) {
   return (
     <button
       onClick={handleDelete}
-      className="absolute top-6 right-1 p-2 rounded-full bg-red-500 text-white hover:bg-red-600 cursor-pointer shadow"
+      className="absolute top-1 right-1 p-2 rounded-full bg-red-500 text-white hover:bg-red-600 cursor-pointer shadow"
     >
       <Trash2 size={18} />
     </button>

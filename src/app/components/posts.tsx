@@ -9,10 +9,10 @@ export default async function Page() {
     const posts = await sql`SELECT * FROM posts` as Post[];
 
     return (
-        <>
+        <div className="space-y-6">
         {posts.map((post) => (
             <Postcard key={post.id} post={post} />
         ))}
-        </>
+        </div>
     )
 }

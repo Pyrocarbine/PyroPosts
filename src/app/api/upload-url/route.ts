@@ -12,7 +12,7 @@ const s3Client = new S3Client({
 });
 
 export async function POST(req: Request) {
-    const session= await auth();
+    const session = await auth();
     if (!session?.user) return NextResponse.json({ success: false, error: "User is not signed in. Please sign in to make new posts"}, { status: 500 });
     const formData = await req.formData();
     const file = formData.get("file") as File;

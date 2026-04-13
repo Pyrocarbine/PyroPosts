@@ -40,14 +40,23 @@ async function regenerateImageUrls(html: string): Promise<string> {
 
 type Props = {
   content: string;
+  isPreview?: boolean;
 };
 
-export default async function PostContent({ content }: Props) {
-  const html = await regenerateImageUrls(content);
+export default async function PostContent({ content, isPreview = false }: Props) {
+  let html = await regenerateImageUrls(content);
+
+  if (isPreview) {
+    // Load HTML into Cheerio
+    const $ = cheerio.load(html);
+    // Remove all <img> tags
+    $("img").remove();
+    html = $.html();
+  }
 
   return (
     <div
-      className="text-lg font-sans line-clamp-2"
+      className={`post-content text-lg leading-relaxed ${isPreview ? 'line-clamp-2' : ''}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

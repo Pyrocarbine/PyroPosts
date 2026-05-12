@@ -1,9 +1,8 @@
 import Page from './components/posts';
 import CreatePostButton from './components/CreatePostsButton';
-import { auth } from "./auth"
+import { auth } from "./auth";
  
-
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams?: { q?: string } }) {
   const session = await auth();
   return (
     <div className="min-h-screen bg-gray-50">
@@ -12,7 +11,7 @@ export default async function Home() {
           {session?.user ? "Welcome back to PyroPosts, " + session.user.name : "Welcome to PyroPosts"}
         </div>
         <CreatePostButton text="Sign in to post new blogs"/>
-        <Page />
+        <Page searchParams={searchParams} />
       </div>
     </div>
   );

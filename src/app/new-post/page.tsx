@@ -1,11 +1,18 @@
 'use client';
-import { use, useState, useRef } from "react"; 
+import { useState, useRef } from "react"; 
 import { useEditor, EditorContent} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import ImageResize from 'tiptap-extension-resize-image';
 import type { Editor as EditorType } from "@tiptap/react"; 
+import { options } from "../lib/definitions"
+import dynamic from "next/dynamic";
 
+const Select = dynamic(() => import("react-select"), {
+  ssr: false,
+});
+
+type TagOption = (typeof options)[number];
 
 function ImageUploadButton({ editor }: { editor: EditorType | null }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -73,6 +80,7 @@ function MenuBar( { editor }: {editor: EditorType | null } ) {
 
 export default function NewPostPage() {
     const [postTitle, setPostTitle] = useState("");
+    const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
     const [error, setError] = useState("");
     const editor: EditorType | null = useEditor({
         extensions: [StarterKit, Image, ImageResize],
@@ -84,7 +92,7 @@ export default function NewPostPage() {
             },
         },
     });
-    const isFormValid : boolean | null = postTitle.trim() !== "" && editor && editor.getHTML().trim() !== "";
+    const isFormValid = !!editor && postTitle.trim() !== "" && editor.getHTML().trim() !== "";
     async function submitPost(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         if(!editor) return;
@@ -97,7 +105,11 @@ export default function NewPostPage() {
             const res = await fetch("/api/make-post", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ title: postTitle, content: contentHTML }),
+                body: JSON.stringify({
+                  title: postTitle,
+                  content: contentHTML,
+                  tags: selectedTags.map((tag) => tag.value),
+                }),
             });
 
             const data = await res.json();
@@ -106,6 +118,7 @@ export default function NewPostPage() {
             }
 
             setPostTitle("");
+            setSelectedTags([]);
             editor.commands.clearContent();
         } catch (err: unknown) {
             if (err instanceof Error) {
@@ -120,7 +133,19 @@ export default function NewPostPage() {
             <div className="text-center text-3xl pb-8 pt-5">Create a new post!</div>
             <div className="w-1/2 block m-auto">
                 <form onSubmit={submitPost} className="space-y-4">
+                    <label className="block text-sm font-semibold text-gray-900 mb-2">Title</label>
                     <input type="text" value={postTitle} placeholder="Title" onChange={(e) => setPostTitle(e.target.value)} className="w-full border p-2 mb-5"/>
+                    <label className="block text-sm font-semibold text-gray-900 mb-2">Tags</label>
+                    <Select
+                      options={options}
+                      isMulti
+                      placeholder="Select Tags"
+                      className="mb-5"
+                      value={selectedTags}
+                      onChange={(value) =>
+                        setSelectedTags(Array.isArray(value) ? (value as TagOption[]) : [])
+                      }
+                    />
                     <div className="pt-1 pb-3 pl-4 pr-4 border rounded-lg prose max-w-none">
                         <MenuBar editor={editor} />
                         <EditorContent editor={editor} />

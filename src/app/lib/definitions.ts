@@ -25,3 +25,26 @@ export type FormState =
     message?: string;
     }
 | undefined;
+
+export const options = [
+  { value: 'reading', label: 'Reading' },
+  { value: 'gaming', label: 'Gaming' },
+  { value: 'coding', label: 'Coding' },
+  { value: 'photography', label: 'Photography' },
+  { value: 'drawing', label: 'Drawing' },
+  { value: 'painting', label: 'Painting' },
+  { value: 'writing', label: 'Writing' },
+  { value: 'music', label: 'Music' },
+  { value: 'singing', label: 'Singing' },
+  { value: 'cooking', label: 'Cooking' },
+  { value: 'baking', label: 'Baking' },
+  { value: 'hiking', label: 'Hiking' },
+  { value: 'fitness', label: 'Fitness' },
+  { value: 'running', label: 'Running' },
+  { value: 'cycling', label: 'Cycling' },
+  { value: 'traveling', label: 'Traveling' },
+  { value: 'gardening', label: 'Gardening' },
+  { value: 'fishing', label: 'Fishing' },
+  { value: 'movies', label: 'Movies' },
+  { value: 'sports', label: 'Sports' },
+];

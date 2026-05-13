@@ -56,7 +56,7 @@ export default async function PostContent({ content, isPreview = false }: Props)
 
   return (
     <div
-      className={`post-content text-lg leading-relaxed ${isPreview ? 'line-clamp-2' : ''}`}
+      className={`post-content text-lg leading-relaxed ${isPreview ? 'line-clamp-2 pt-2' : 'pt-4'}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

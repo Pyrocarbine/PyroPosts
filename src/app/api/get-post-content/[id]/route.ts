@@ -7,7 +7,7 @@ export async function GET(req: Request, {params}: {params: Promise<{id: string}>
     const { id } = await params;
     const postId = Number(id);
     const [post] = (await sql`
-        SELECT title, content, display_name, created_at, tags
+        SELECT title, content, email, display_name, created_at, tags
         FROM posts
         WHERE id = ${postId}
     `) as Post[];

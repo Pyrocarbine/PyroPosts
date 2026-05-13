@@ -16,7 +16,9 @@ export default async function getPost({ params } : {params: Promise<{id: string}
             <div className="max-w-4xl mx-auto px-4 py-8">
                 <article className="bg-white border border-gray-200 rounded-lg shadow-sm p-8">
                     <h1 className="text-4xl font-bold text-gray-900 mb-4">{post.title.toString()}</h1>
-                    <p className="text-lg text-gray-600 mb-2">Created by {post.display_name.toString()} on {new Date(post.created_at).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric"})}</p>
+                    <p className="text-lg text-gray-600 mb-2">Created by {post.display_name.toString()}{post.email && (
+                        <> (<a href={`mailto:${post.email}`}>{post.email}</a>)</>
+                    )} on {new Date(post.created_at).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric"})}</p>
                     {post?.tags && post?.tags?.length > 0 && (
                         <div className="mb-2">
                             {post.tags.map((tag, index) => {

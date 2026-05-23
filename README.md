@@ -36,4 +36,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # PyroPosts
 
-PyroPosts is a free social publishing platform built with Next.js that allows users to create and share posts in real time through a built-in rich text editor with integrated image support. The platform also features an optional AI-powered summarizer, enabling users to quickly generate concise overviews of articles and long-form content.
+PyroPosts is a free social publishing platform built with Next.js that allows users to create and share posts in real time through a built-in rich text editor with integrated image support. Users can browse and discover articles using keyword search and tag-based filtering for easier content exploration. The platform also features an optional AI-powered summarizer, enabling users to quickly generate concise overviews of articles and long-form content.

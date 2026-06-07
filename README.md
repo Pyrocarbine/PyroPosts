@@ -154,4 +154,6 @@ The app depends on external services, so local development requires environment 
 - AWS access keys for S3 uploads
 - OpenAI API access for summaries
 
-The code also references `NEXT_PUBLIC_BASE_URL` when fetching a post on the server side.
+Note: The application uses NEXT_PUBLIC_BASE_URL for server-side requests when fetching blog posts. If this environment variable is not set, it defaults to http://localhost:3000.
+
+When deploying the application, ensure that NEXT_PUBLIC_BASE_URL is configured to match your production URL. Otherwise, server-side requests may fail or attempt to fetch data from an incorrect endpoint.
